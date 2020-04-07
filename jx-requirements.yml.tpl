@@ -24,7 +24,6 @@ kaniko: true
 secretStorage: vault
 vault:
   aws:
-    iamUserName: "${vault_user}"
     dynamoDBTable: "${vault_dynamodb_table}"
     dynamoDBRegion: "${region}"
     kmsKeyId: "${vault_kms_key}"

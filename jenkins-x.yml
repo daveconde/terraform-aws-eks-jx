@@ -3,12 +3,6 @@ pipelineConfig:
   pipelines:
     pullRequest:
       pipeline:
-        environment:
-          - name: VAULT_USER
-            valueFrom:
-              secretKeyRef:
-                name: aws-bdd-user-creds
-                key: vault_user
         agent:
           image: gcr.io/jenkinsxio/builder-terraform
         stages:

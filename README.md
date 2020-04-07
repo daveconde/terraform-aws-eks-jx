@@ -58,16 +58,8 @@ A default Jenkins X ready cluster can be provisioned by creating a _main.tf_ fil
 ```terraform
 module "eks-jx" {
   source  = "jenkins-x/eks-jx/aws"
-
-  vault_user="<your_vault_iam_username>"
 }
 ```
-
-You will need to provide a existing IAM user name for Vault.
-The specified user's access keys are used to authenticate the Vault pod against AWS.
-The IAM user does not need any permissions attached to it.
-This Terraform Module creates a new IAM Policy and attaches it to the specified user.
-For more information refer to [Configuring Vault for EKS](https://jenkins-x.io/docs/getting-started/setup/boot/clouds/amazon/#configuring-vault-for-eks) in the Jenkins X documentation.
 
 The minimal configuration from above can be applied by running:
 
@@ -115,8 +107,6 @@ During `terraform apply` the enabledS3 buckets are created, and the generated `j
 Vault is used by Jenkins X for managing secrets.
 Part of this module's responsibilities is the creation of all resources required to run the [Vault Operator](https://github.com/banzaicloud/bank-vaults).
 These resources are An S3 Bucket, a DynamoDB Table and a KMS Key.
-
-The `vault_user` variable is required when running this script. This is the user whose credentials will be used to authenticate the Vault pods against AWS.
 
 #### ExternalDNS
 <a id="markdown-ExternalDNS" name="ExternalDNS"></a>

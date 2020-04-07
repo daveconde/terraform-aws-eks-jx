@@ -1,8 +1,5 @@
 data "aws_caller_identity" "current" {}
 
-data "aws_iam_user" "vault_user" {
-  user_name = var.vault_user
-}
 
 // ----------------------------------------------------------------------------
 // Vault S3 bucket
@@ -61,7 +58,6 @@ resource "aws_kms_key" "kms_vault_unseal" {
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                    "${data.aws_iam_user.vault_user.arn}",
                     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
                 ]
             },
@@ -154,7 +150,3 @@ resource "aws_iam_policy" "aws_vault_user_policy" {
   policy      = data.aws_iam_policy_document.vault_iam_user_policy_document.json
 }
 
-resource "aws_iam_user_policy_attachment" "attach_vault_policy_to_user" {
-  user       = var.vault_user
-  policy_arn = aws_iam_policy.aws_vault_user_policy.arn
-}

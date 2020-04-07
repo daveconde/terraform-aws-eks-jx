@@ -51,7 +51,6 @@ module "cluster" {
 module "vault" {
   source       = "./modules/vault"
   cluster_name = local.cluster_name
-  vault_user   = var.vault_user
 }
 
 // ----------------------------------------------------------------------------
@@ -88,7 +87,6 @@ resource "local_file" "jx-requirements" {
     vault_kms_key              = module.vault.kms_vault_unseal
     vault_bucket               = module.vault.vault_unseal_bucket
     vault_dynamodb_table       = module.vault.vault_dynamodb_table
-    vault_user                 = var.vault_user
     enable_external_dns        = var.enable_external_dns
     domain                     = module.dns.domain
     enable_tls                 = var.enable_tls

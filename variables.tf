@@ -13,10 +13,6 @@ variable "cluster_name" {
   default     = ""
 }
 
-variable "vault_user" {
-  description = "The AWS IAM Username whose credentials will be used to authenticate the Vault pods against AWS"
-  type        = string
-}
 // ----------------------------------------------------------------------------
 
 
